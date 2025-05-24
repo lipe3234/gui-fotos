@@ -22,37 +22,22 @@
       font-size: 2em;
     }
 
-    /* Carrossel */
-    .carousel-container {
-      position: relative;
-      width: 100%;
+    /* Galeria fixa */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
       max-width: 1000px;
-      margin: auto;
+      margin: 0 auto 60px;
     }
 
-    .carousel-container img {
-      width: 100%;
-      height: auto;
-      cursor: pointer;
+    .gallery img {
+      width: calc(33% - 20px);
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(255,255,255,0.1);
-    }
-
-    .nav-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      color: white;
-      font-size: 30px;
       cursor: pointer;
-      padding: 10px;
-      border-radius: 50%;
     }
-
-    .nav-btn.left { left: 10px; }
-    .nav-btn.right { right: 10px; }
 
     #fullscreen-container {
       display: none;
@@ -153,12 +138,15 @@
 </head>
 <body>
 
-  <!-- PARTE 1: Carrossel de Fotos -->
-  <section id="carrossel">
-    <div class="carousel-container">
-      <button class="nav-btn left" onclick="prevImage()">⟨</button>
-      <img id="carousel-img" src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img1.jpg" onclick="showFullscreen()" alt="Foto do portfólio">
-      <button class="nav-btn right" onclick="nextImage()">⟩</button>
+  <!-- PARTE 1: Galeria de Fotos -->
+  <section id="galeria">
+    <h2>Portfólio</h2>
+    <div class="gallery">
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img1.jpg" onclick="showFullscreen(this.src)" alt="Foto 1">
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img2.jpg" onclick="showFullscreen(this.src)" alt="Foto 2">
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img3.JPG" onclick="showFullscreen(this.src)" alt="Foto 3">
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img4.jpg" onclick="showFullscreen(this.src)" alt="Foto 4">
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img5.JPG" onclick="showFullscreen(this.src)" alt="Foto 5">
     </div>
   </section>
 
@@ -170,13 +158,9 @@
   <section class="about-section">
     <div class="text">
       <h2>Sobre Nós</h2>
-      <p>
-        Sou Luiz Guilherme Silva, mais conhecido como Gui Fotógrafo. Há 4 anos, venho registrando momentos únicos através da minha lente.
-        Meu objetivo é capturar emoções verdadeiras em ensaios, festas, eventos e casamentos. Além disso, auxilio empresas a destacarem seus produtos e serviços com imagens e vídeos de alta qualidade.
-      </p>
-      <p>
-        Desde a adolescência, sonhava em capturar o mundo através das lentes. Hoje, vivo esse sonho a cada clique, buscando sempre transmitir autenticidade, emoção e beleza em cada registro.
-      </p>
+      <p>Olá! Eu sou Luiz Guilherme Silva, mais conhecido como Gui Fotógrafo. Com mais de 4 anos de experiência, meu objetivo é transformar momentos em memórias inesquecíveis por meio da fotografia e do vídeo.</p>
+      <p>Trabalho com ensaios, festas, eventos e casamentos, sempre buscando capturar a essência de cada história. Também ajudo empresas a destacarem seus serviços com imagens profissionais de alta qualidade.</p>
+      <p>Desde a adolescência, sonhava em ver o mundo através das lentes. Hoje, vivo esse sonho em cada clique, transformando paixões em imagens autênticas e impactantes.</p>
     </div>
     <img src="https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0" alt="Gui Fotógrafo">
   </section>
@@ -203,43 +187,17 @@
   </section>
 
   <script>
-    const images = [
-      'https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img1.jpg',
-      'https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img2.jpg',
-      'https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img3.JPG',
-      'https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img4.jpg',
-      'https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img5.JPG'
-    ];
-
-    let currentIndex = 0;
-    const carouselImg = document.getElementById('carousel-img');
-    const fullscreenContainer = document.getElementById('fullscreen-container');
-    const fullscreenImg = document.getElementById('fullscreen-img');
-
-    function updateImage() {
-      carouselImg.src = images[currentIndex];
-    }
-
-    function nextImage() {
-      currentIndex = (currentIndex + 1) % images.length;
-      updateImage();
-    }
-
-    function prevImage() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      updateImage();
-    }
-
-    function showFullscreen() {
-      fullscreenImg.src = images[currentIndex];
+    function showFullscreen(src) {
+      const fullscreenContainer = document.getElementById('fullscreen-container');
+      const fullscreenImg = document.getElementById('fullscreen-img');
+      fullscreenImg.src = src;
       fullscreenContainer.style.display = 'flex';
     }
 
     function closeFullscreen() {
+      const fullscreenContainer = document.getElementById('fullscreen-container');
       fullscreenContainer.style.display = 'none';
     }
-
-    setInterval(nextImage, 5000);
   </script>
 </body>
 </html>
