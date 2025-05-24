@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Gui - Fotógrafo</title>
   <style>
     body {
@@ -39,11 +39,12 @@
       width: auto;
       max-width: 100%;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
       transition: opacity 0.5s ease-in-out;
       position: absolute;
       opacity: 0;
       object-fit: contain;
+      cursor: pointer; /* Para indicar que a imagem é clicável */
     }
 
     .carousel img.active {
@@ -54,13 +55,15 @@
     #fullscreen-container {
       display: none;
       position: fixed;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100vw;
       height: 100vh;
       background: rgba(0, 0, 0, 0.95);
       justify-content: center;
       align-items: center;
       z-index: 1000;
+      cursor: pointer;
     }
 
     #fullscreen-container img {
@@ -86,7 +89,7 @@
       width: 300px;
       height: auto;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
     }
 
     .projects {
@@ -109,7 +112,7 @@
       color: white;
       text-decoration: none;
       border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(255,255,255,0.05);
+      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
       transition: background 0.3s, transform 0.3s;
       font-size: 1.1em;
     }
@@ -170,21 +173,20 @@
   </style>
 </head>
 <body>
-
   <!-- PARTE 1: Galeria com carrossel automático -->
   <section id="galeria">
     <h2>Gui - Fotógrafo</h2>
     <div class="carousel">
-      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img1.jpg" class="active" alt="Foto 1">
-      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img2.jpg" alt="Foto 2">
-      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img3.JPG" alt="Foto 3">
-      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img4.jpg" alt="Foto 4">
-      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img5.JPG" alt="Foto 5">
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img1.jpg" class="active" alt="Foto 1" />
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img2.jpg" alt="Foto 2" />
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img3.JPG" alt="Foto 3" />
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img4.jpg" alt="Foto 4" />
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img5.JPG" alt="Foto 5" />
     </div>
   </section>
 
   <div id="fullscreen-container" onclick="closeFullscreen()">
-    <img id="fullscreen-img" src="">
+    <img id="fullscreen-img" src="" />
   </div>
 
   <!-- PARTE 2: Sobre a Empresa -->
@@ -195,7 +197,7 @@
       <p>Trabalho com ensaios, festas, eventos e casamentos, sempre buscando capturar a essência de cada história. Também ajudo empresas a destacarem seus serviços com imagens profissionais de alta qualidade.</p>
       <p>Desde a adolescência, sonhava em ver o mundo através das lentes. Hoje, vivo esse sonho em cada clique, transformando paixões em imagens autênticas e impactantes.</p>
     </div>
-    <img src="https://github.com/lipe3234/gui-fotos/blob/main/gui%20foto.jpg" alt="Gui Fotógrafo">
+    <img src="https://github.com/lipe3234/gui-fotos/blob/main/gui%20foto.jpg" alt="Gui Fotógrafo" />
   </section>
 
   <!-- PARTE 3: Projetos -->
@@ -210,72 +212,78 @@
 
   <!-- PARTE 4: Fale Conosco -->
   <section class="contact-form">
-  <h2>Fale Conosco</h2>
-  <form id="contato-form" method="POST">
-    <input type="text" name="name" placeholder="Seu nome" required>
-    <input type="email" name="email" placeholder="Seu e-mail" required>
-    <textarea name="message" rows="5" placeholder="Sua mensagem" required></textarea>
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="box">
-    <button type="submit">Enviar</button>
-  </form>
-  <p id="mensagem-enviada" style="color:lightgreen; display:none;">Mensagem enviada com sucesso!</p>
-</section>
+    <h2>Fale Conosco</h2>
+    <form id="contato-form" method="POST">
+      <input type="text" name="name" placeholder="Seu nome" required />
+      <input type="email" name="email" placeholder="Seu e-mail" required />
+      <textarea name="message" rows="5" placeholder="Sua mensagem" required></textarea>
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="box" />
+      <button type="submit">Enviar</button>
+    </form>
+    <p id="mensagem-enviada" style="color: lightgreen; display: none;">Mensagem enviada com sucesso!</p>
+  </section>
 
- <script>
-  function showFullscreen(src) {
-    const fullscreenContainer = document.getElementById('fullscreen-container');
-    const fullscreenImg = document.getElementById('fullscreen-img');
-    fullscreenImg.src = src;
-    fullscreenContainer.style.display = 'flex';
-  }
+  <script>
+    function showFullscreen(src) {
+      const fullscreenContainer = document.getElementById('fullscreen-container');
+      const fullscreenImg = document.getElementById('fullscreen-img');
+      fullscreenImg.src = src;
+      fullscreenContainer.style.display = 'flex';
+    }
 
-  function closeFullscreen() {
-    const fullscreenContainer = document.getElementById('fullscreen-container');
-    fullscreenContainer.style.display = 'none';
-  }
+    function closeFullscreen() {
+      const fullscreenContainer = document.getElementById('fullscreen-container');
+      fullscreenContainer.style.display = 'none';
+    }
 
-  // Carrossel automático
-  const carouselImages = document.querySelectorAll('.carousel img');
-  let current = 0;
-
-  setInterval(() => {
-    carouselImages[current].classList.remove('active');
-    current = (current + 1) % carouselImages.length;
-    carouselImages[current].classList.add('active');
-  }, 4000);
-
-  // Envio do formulário via AJAX com mensagem de sucesso
-  const form = document.querySelector('.contact-form form');
-  const mensagem = document.getElementById('mensagem-enviada');
-
-  form.addEventListener('submit', function(event) {
-    event.preventDefault(); // impede o envio padrão
-
-    const formData = new FormData(form);
-
-    fetch('https://formsubmit.co/ajax/phillipelimapravatti@gmail.com', {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-        mensagem.style.display = 'block'; // mostra mensagem
-        form.reset(); // limpa formulário
-        setTimeout(() => {
-          mensagem.style.display = 'none'; // esconde mensagem após 5s
-        }, 5000);
-      } else {
-        alert('Erro ao enviar, tente novamente.');
-      }
-    }).catch(() => {
-      alert('Erro na conexão, tente novamente.');
+    // Ativar fullscreen ao clicar nas imagens do carrossel
+    const carouselImages = document.querySelectorAll('.carousel img');
+    carouselImages.forEach(img => {
+      img.addEventListener('click', () => {
+        showFullscreen(img.src);
+      });
     });
-  });
-</script>
 
+    // Carrossel automático
+    let current = 0;
+    setInterval(() => {
+      carouselImages[current].classList.remove('active');
+      current = (current + 1) % carouselImages.length;
+      carouselImages[current].classList.add('active');
+    }, 4000);
 
+    // Envio do formulário via AJAX com mensagem de sucesso
+    const form = document.querySelector('.contact-form form');
+    const mensagem = document.getElementById('mensagem-enviada');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault(); // impede o envio padrão
+
+      const formData = new FormData(form);
+
+      fetch('https://formsubmit.co/ajax/phillipelimapravatti@gmail.com', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          Accept: 'application/json',
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            mensagem.style.display = 'block'; // mostra mensagem
+            form.reset(); // limpa formulário
+            setTimeout(() => {
+              mensagem.style.display = 'none'; // esconde mensagem após 5s
+            }, 5000);
+          } else {
+            alert('Erro ao enviar, tente novamente.');
+          }
+        })
+        .catch(() => {
+          alert('Erro na conexão, tente novamente.');
+        });
+    });
+  </script>
 </body>
 </html>
