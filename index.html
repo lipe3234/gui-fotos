@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Fotógrafo - Portfólio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
@@ -28,23 +29,21 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      max-width: 1000px;
-      height: 400px;
+      max-width: 100%;
+      height: auto;
       margin: 0 auto 60px;
       position: relative;
     }
 
     .carousel img {
       max-width: 100%;
-      max-height: 100%;
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
+      height: auto;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(255,255,255,0.1);
-      transition: opacity 0.6s ease-in-out;
+      transition: opacity 0.5s ease-in-out;
       position: absolute;
       opacity: 0;
+      object-fit: contain;
     }
 
     .carousel img.active {
@@ -85,6 +84,7 @@
 
     .about-section img {
       width: 350px;
+      max-width: 90vw;
       height: auto;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(255,255,255,0.1);
@@ -149,13 +149,24 @@
     .contact-form button:hover {
       background: #ccc;
     }
+
+    @media (max-width: 768px) {
+      .about-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about-section .text {
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
 
   <!-- PARTE 1: Galeria com carrossel automático -->
   <section id="galeria">
-    <h2>Portfólio</h2>
+    <h2>Gui - Fotógrafo</h2>
     <div class="carousel">
       <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img1.jpg" class="active" alt="Foto 1">
       <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img2.jpg" alt="Foto 2">
