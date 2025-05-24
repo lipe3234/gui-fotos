@@ -2,8 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Fotógrafo - Portfólio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gui - Fotógrafo</title>
   <style>
     body {
       margin: 0;
@@ -29,15 +28,16 @@
       justify-content: center;
       align-items: center;
       overflow: hidden;
-      max-width: 100%;
-      height: auto;
+      max-width: 90%;
+      height: 280px;
       margin: 0 auto 60px;
       position: relative;
     }
 
     .carousel img {
+      height: 100%;
+      width: auto;
       max-width: 100%;
-      height: auto;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(255,255,255,0.1);
       transition: opacity 0.5s ease-in-out;
@@ -83,8 +83,7 @@
     }
 
     .about-section img {
-      width: 350px;
-      max-width: 90vw;
+      width: 300px;
       height: auto;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(255,255,255,0.1);
@@ -151,13 +150,14 @@
     }
 
     @media (max-width: 768px) {
+      .carousel {
+        height: 200px;
+      }
       .about-section {
         flex-direction: column;
-        text-align: center;
       }
-
-      .about-section .text {
-        text-align: center;
+      .about-section img {
+        width: 80%;
       }
     }
   </style>
