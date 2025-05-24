@@ -210,22 +210,19 @@
 
   <!-- PARTE 4: Fale Conosco -->
   <section class="contact-form">
-    <h2>Fale Conosco</h2>
-    <form id="contactForm">
-  <input type="text" name="name" placeholder="Seu nome" required>
-  <input type="email" name="email" placeholder="Seu e-mail" required>
-  <textarea name="message" rows="5" placeholder="Sua mensagem" required></textarea>
-  <input type="hidden" name="_captcha" value="false">
-  <input type="hidden" name="_template" value="box">
-  <button type="submit">Enviar</button>
-</form>
-<p id="mensagem-enviada" style="color: lightgreen; display: none;">Mensagem enviada com sucesso!</p>
+  <h2>Fale Conosco</h2>
+  <form id="contato-form" method="POST">
+    <input type="text" name="name" placeholder="Seu nome" required>
+    <input type="email" name="email" placeholder="Seu e-mail" required>
+    <textarea name="message" rows="5" placeholder="Sua mensagem" required></textarea>
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="box">
+    <button type="submit">Enviar</button>
+  </form>
+  <p id="mensagem-enviada" style="color:lightgreen; display:none;">Mensagem enviada com sucesso!</p>
+</section>
 
-    </form>
-    <p id="mensagem-enviada">Mensagem enviada com sucesso!</p>
-  </section>
-
-  <script>
+ <script>
   function showFullscreen(src) {
     const fullscreenContainer = document.getElementById('fullscreen-container');
     const fullscreenImg = document.getElementById('fullscreen-img');
@@ -248,12 +245,12 @@
     carouselImages[current].classList.add('active');
   }, 4000);
 
-  // Envio AJAX do formulário para mostrar mensagem sem sair da página
-  const form = document.querySelector('form[action="https://formsubmit.co/phillipelimapravatti@gmail.com"]');
+  // Envio do formulário via AJAX com mensagem de sucesso
+  const form = document.querySelector('.contact-form form');
   const mensagem = document.getElementById('mensagem-enviada');
 
   form.addEventListener('submit', function(event) {
-    event.preventDefault();
+    event.preventDefault(); // impede o envio padrão
 
     const formData = new FormData(form);
 
@@ -265,26 +262,20 @@
       }
     }).then(response => {
       if (response.ok) {
-        mensagem.style.display = 'block';
-        form.reset();
-        // Opcional: esconder a mensagem após alguns segundos
+        mensagem.style.display = 'block'; // mostra mensagem
+        form.reset(); // limpa formulário
         setTimeout(() => {
-          mensagem.style.display = 'none';
+          mensagem.style.display = 'none'; // esconde mensagem após 5s
         }, 5000);
       } else {
-        response.json().then(data => {
-          if (data.errors) {
-            alert(data.errors.map(error => error.message).join(", "));
-          } else {
-            alert('Erro no envio do formulário');
-          }
-        });
+        alert('Erro ao enviar, tente novamente.');
       }
     }).catch(() => {
-      alert('Erro no envio do formulário');
+      alert('Erro na conexão, tente novamente.');
     });
   });
 </script>
+
 
 </body>
 </html>
