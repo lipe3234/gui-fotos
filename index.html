@@ -22,21 +22,31 @@
       font-size: 2em;
     }
 
-    /* Galeria fixa */
-    .gallery {
+    /* Galeria com carrossel automático */
+    .carousel {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
+      align-items: center;
+      overflow: hidden;
       max-width: 1000px;
+      height: 400px;
       margin: 0 auto 60px;
+      position: relative;
     }
 
-    .gallery img {
-      width: calc(33% - 20px);
+    .carousel img {
+      max-height: 100%;
+      width: auto;
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(255,255,255,0.1);
-      cursor: pointer;
+      transition: opacity 0.5s ease-in-out;
+      position: absolute;
+      opacity: 0;
+    }
+
+    .carousel img.active {
+      opacity: 1;
+      position: relative;
     }
 
     #fullscreen-container {
@@ -92,17 +102,19 @@
     }
 
     .projects a {
-      padding: 15px 25px;
+      padding: 20px 30px;
       background: #111;
       color: white;
       text-decoration: none;
-      border-radius: 10px;
+      border-radius: 15px;
       box-shadow: 0 4px 10px rgba(255,255,255,0.05);
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
+      font-size: 1.1em;
     }
 
     .projects a:hover {
       background: #333;
+      transform: scale(1.05);
     }
 
     .contact-form form {
@@ -138,15 +150,15 @@
 </head>
 <body>
 
-  <!-- PARTE 1: Galeria de Fotos -->
+  <!-- PARTE 1: Galeria com carrossel automático -->
   <section id="galeria">
     <h2>Portfólio</h2>
-    <div class="gallery">
-      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img1.jpg" onclick="showFullscreen(this.src)" alt="Foto 1">
-      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img2.jpg" onclick="showFullscreen(this.src)" alt="Foto 2">
-      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img3.JPG" onclick="showFullscreen(this.src)" alt="Foto 3">
-      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img4.jpg" onclick="showFullscreen(this.src)" alt="Foto 4">
-      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img5.JPG" onclick="showFullscreen(this.src)" alt="Foto 5">
+    <div class="carousel">
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img1.jpg" class="active" alt="Foto 1">
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img2.jpg" alt="Foto 2">
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img3.JPG" alt="Foto 3">
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img4.jpg" alt="Foto 4">
+      <img src="https://raw.githubusercontent.com/lipe3234/gui-fotos/main/img5.JPG" alt="Foto 5">
     </div>
   </section>
 
@@ -198,6 +210,16 @@
       const fullscreenContainer = document.getElementById('fullscreen-container');
       fullscreenContainer.style.display = 'none';
     }
+
+    // Carrossel automático
+    const carouselImages = document.querySelectorAll('.carousel img');
+    let current = 0;
+
+    setInterval(() => {
+      carouselImages[current].classList.remove('active');
+      current = (current + 1) % carouselImages.length;
+      carouselImages[current].classList.add('active');
+    }, 4000);
   </script>
 </body>
 </html>
