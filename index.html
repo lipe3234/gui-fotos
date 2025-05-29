@@ -44,12 +44,14 @@
       position: absolute;
       opacity: 0;
       object-fit: contain;
-      cursor: pointer; /* Para indicar que a imagem é clicável */
+      cursor: pointer;/* Para indicar que a imagem é clicável */
+      pointer-events: none; 
     }
 
     .carousel img.active {
       opacity: 1;
       position: relative;
+      pointer-events: auto;
     }
 
     #fullscreen-container {
